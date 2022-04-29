@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "menu")
 public class MenuEntity {
 
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( nullable = false, length = 50)

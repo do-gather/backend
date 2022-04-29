@@ -38,7 +38,7 @@ public class DetailEntity {
     private Long count;
 
     @Column( nullable = false, length = 20)
-    @ColumnDefault("Takeout")                  //take out 이 디폴트
+    //@ColumnDefault("Takeout")                  //take out 이 디폴트
     private String in_out;
 
     @Column( nullable = false, length = 20)

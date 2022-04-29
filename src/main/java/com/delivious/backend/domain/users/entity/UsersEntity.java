@@ -36,7 +36,7 @@ public class UsersEntity {
     private Date date_of_birth;
 
     @Column( nullable = false )
-    @ColumnDefault("customer")  //customer 디폴트값으로
+    //@ColumnDefault("customer")  //customer 디폴트값으로
     private String type;
 
     private Timestamp created_at;
