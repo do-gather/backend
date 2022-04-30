@@ -1,11 +1,16 @@
 package com.delivious.backend.common.models;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,6 +22,7 @@ import javax.validation.constraints.Size;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column( nullable = false, length = 50)
 	private Long id;
 
 	@NotBlank
@@ -31,6 +37,18 @@ public class User {
 	@NotBlank
 	@Size(max = 120)
 	private String password;
+
+	@NotNull
+	@Size(max=10)
+	private Long phone_num;
+
+	private Date date_of_birth;
+
+	@Column( nullable = false )
+	@ColumnDefault("customer")  //customer 디폴트값으로
+	private String type;
+
+	private Timestamp created_at;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
