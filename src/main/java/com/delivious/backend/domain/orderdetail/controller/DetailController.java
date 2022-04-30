@@ -26,5 +26,3 @@ public class DetailController {
 
 
 
-public class DetailController {
-}
