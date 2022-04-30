@@ -1,4 +1,8 @@
 package com.delivious.backend.domain.menu.repository;
+import com.delivious.backend.domain.menu.entity.MenuEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class MenuRepository {
+import java.util.UUID;
+
+public interface MenuRepository extends  JpaRepository<MenuEntity,UUID> {
 }
