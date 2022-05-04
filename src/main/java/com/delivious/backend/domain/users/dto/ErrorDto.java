@@ -9,6 +9,7 @@ public class ErrorDto {
     private final String message;
     private List<FieldError> fieldErrors = new ArrayList<>();
 
+
     public ErrorDto(int status, String message) {
         this.status = status;
         this.message = message;

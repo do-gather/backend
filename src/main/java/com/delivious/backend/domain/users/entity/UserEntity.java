@@ -4,10 +4,11 @@ package com.delivious.backend.domain.users.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "users")
-public class UsersEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( nullable = false, length = 50)
@@ -41,10 +42,18 @@ public class UsersEntity {
 
     private Timestamp created_at;
 
+    @Column(name = "activated")
+    private boolean activated;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    public Set<Authority> authorities;
 
     @Builder
-    public UsersEntity(UUID user_id, String password, String email, Long phone_num, String name, Date date_of_birth, String type, Timestamp created_at) {
+    public UserEntity(UUID user_id, String password, String email, Long phone_num, String name, Date date_of_birth, String type, Timestamp created_at) {
         this.user_id = user_id;
         this.password = password;
         this.email = email;
@@ -54,4 +63,6 @@ public class UsersEntity {
         this.type = type;
         this.created_at = created_at;
     }
+
+
 }

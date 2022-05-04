@@ -1,10 +1,10 @@
 package com.delivious.backend.domain.users.config;
 
 
-import me.silvernine.tutorial.jwt.JwtSecurityConfig;
-import me.silvernine.tutorial.jwt.JwtAccessDeniedHandler;
-import me.silvernine.tutorial.jwt.JwtAuthenticationEntryPoint;
-import me.silvernine.tutorial.jwt.TokenProvider;
+import com.delivious.backend.domain.users.jwt.JwtSecurityConfig;
+import com.delivious.backend.domain.users.jwt.JwtAccessDeniedHandler;
+import com.delivious.backend.domain.users.jwt.JwtAuthenticationEntryPoint;
+import com.delivious.backend.domain.users.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

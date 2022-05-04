@@ -3,15 +3,17 @@ package com.delivious.backend.domain.users.service;
 
 import java.util.Collections;
 import java.util.Optional;
-import com.delivious.backend.domain.users.dto.UserDto;
-import com.delivious.backend.domain.users.entity.Authority;
-import me.silvernine.tutorial.entity.User;
-import me.silvernine.tutorial.exception.DuplicateMemberException;
-import me.silvernine.tutorial.repository.UserRepository;
-import me.silvernine.tutorial.util.SecurityUtil;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.entity.Authority;
+import com.delivious.backend.domain.users.entity.UserEntity;
+import com.delivious.backend.domain.users.exception.DuplicateMemberException;
+import com.delivious.backend.domain.users.repository.UserRepository;
+import com.delivious.backend.domain.users.service.SecurityUtil;
 
 @Service
 public class UserService {
@@ -33,11 +35,11 @@ public class UserService {
                 .authorityName("ROLE_USER")
                 .build();
 
-        User user = User.builder()
-                .username(userDto.getUsername())
+        UserEntity user = UserEntity.builder()
+                .name(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
-                .nickname(userDto.getNickname())
-                .authorities(Collections.singleton(authority))
+                //.nickname(userDto.getNickname())
+                .authorities(Collections.singleton(authority))   //UserEntity에 연결된 문제 해결 안됨...
                 .activated(true)
                 .build();
 

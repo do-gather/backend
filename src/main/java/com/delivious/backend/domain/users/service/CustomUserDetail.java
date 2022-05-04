@@ -1,7 +1,7 @@
 package com.delivious.backend.domain.users.service;
 
 
-import me.silvernine.tutorial.entity.User;
+import com.delivious.backend.domain.users.entity.UserEntity;
 import com.delivious.backend.domain.users.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component("userDetailsService")
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetail implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public CustomUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetail(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -30,14 +30,14 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username + " -> 데이터베이스에서 찾을 수 없습니다."));
     }
 
-    private org.springframework.security.core.userdetails.User createUser(String username, User user) {
+    private org.springframework.security.core.userdetails.User createUser(String username, UserEntity user) {
         if (!user.isActivated()) {
             throw new RuntimeException(username + " -> 활성화되어 있지 않습니다.");
         }
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
                 .collect(Collectors.toList());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        return new org.springframework.security.core.userdetails.User(user.getName(),
                 user.getPassword(),
                 grantedAuthorities);
     }

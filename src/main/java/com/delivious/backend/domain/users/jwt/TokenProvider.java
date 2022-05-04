@@ -1,10 +1,11 @@
 package com.delivious.backend.domain.users.jwt;
 
-package me.silvernine.tutorial.jwt;
 
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import  io.jsonwebtoken.Jwts;
+//참고한 깃에서 사용한 import문인데 에러가 뜸
+//import io.jsonwebtoken.io.Decoders;
+//import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -42,6 +43,9 @@ public class TokenProvider implements InitializingBean {
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
     }
 
+
+
+
     @Override
     public void afterPropertiesSet() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
@@ -65,7 +69,7 @@ public class TokenProvider implements InitializingBean {
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwts
+        Claims claims = Jwt
                 .parserBuilder()
                 .setSigningKey(key)
                 .build()

@@ -1,9 +1,9 @@
 package com.delivious.backend.domain.users.controller;
 
 
-import me.silvernine.tutorial.dto.UserDto;
-import me.silvernine.tutorial.entity.User;
-import me.silvernine.tutorial.service.UserService;
+
+import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
