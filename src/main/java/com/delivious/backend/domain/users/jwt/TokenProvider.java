@@ -48,8 +48,8 @@ public class TokenProvider implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
-        this.key = Keys.hmacShaKeyFor(keyBytes);
+        byte[] keyBytes = Decoders.BASE64.decode(secret);    //여기 부분 오류 해결 필요
+        this.key = Keys.hmacShaKeyFor(keyBytes);             //여기 부분 오류 해결 필요
     }
 
     public String createToken(Authentication authentication) {
