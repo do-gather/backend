@@ -1,6 +1,5 @@
 package com.delivious.backend.domain.users.jwt;
 
-package me.silvernine.tutorial.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;

@@ -1,7 +1,7 @@
 package com.delivious.backend.domain.users.repository;
 
 
-import me.silvernine.tutorial.entity.User;
+import com.delivious.backend.domain.users.entity.User;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package com.delivious.backend.domain.users.service;
 
 
-import me.silvernine.tutorial.entity.User;
+import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

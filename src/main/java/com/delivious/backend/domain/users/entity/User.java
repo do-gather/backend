@@ -4,7 +4,7 @@ package com.delivious.backend.domain.users.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "users")
-public class UsersEntity {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column( nullable = false, length = 50)
@@ -44,7 +44,7 @@ public class UsersEntity {
 
 
     @Builder
-    public UsersEntity(UUID user_id, String password, String email, Long phone_num, String name, Date date_of_birth, String type, Timestamp created_at) {
+    public User(UUID user_id, String password, String email, Long phone_num, String name, Date date_of_birth, String type, Timestamp created_at) {
         this.user_id = user_id;
         this.password = password;
         this.email = email;
