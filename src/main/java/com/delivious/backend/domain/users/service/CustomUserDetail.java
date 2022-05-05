@@ -1,6 +1,6 @@
 package com.delivious.backend.domain.users.service;
 
-
+//신선영
 //<<<<<<< feature/login-29:src/main/java/com/delivious/backend/domain/users/service/CustomUserDetail.java
 import com.delivious.backend.domain.users.entity.UserEntity;
 

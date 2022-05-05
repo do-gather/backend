@@ -4,7 +4,6 @@ package com.delivious.backend.domain.users.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;

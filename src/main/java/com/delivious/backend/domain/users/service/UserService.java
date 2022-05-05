@@ -13,7 +13,7 @@ import com.delivious.backend.domain.users.entity.Authority;
 import com.delivious.backend.domain.users.entity.UserEntity;
 import com.delivious.backend.domain.users.exception.DuplicateMemberException;
 import com.delivious.backend.domain.users.repository.UserRepository;
-import com.delivious.backend.domain.users.service.SecurityUtil;
+import com.delivious.backend.domain.users.util.SecurityUtil;
 
 @Service
 public class UserService {
@@ -42,6 +42,7 @@ public class UserService {
                 .authorities(Collections.singleton(authority))   //UserEntity에 연결된 문제 해결 안됨...
                 .activated(true)
                 .build();
+        
 
         return UserDto.from(userRepository.save(user));
     }
