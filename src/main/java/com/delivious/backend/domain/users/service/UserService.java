@@ -39,7 +39,7 @@ public class UserService {
                 .name(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 //.nickname(userDto.getNickname())
-                .authorities(Collections.singleton(authority))   //UserEntity에 연결된 문제 해결 안됨...
+                .authorities(Collections.singleton(authority))   //User Entity 에 연결된 문제 해결 안됨...
                 .activated(true)
                 .build();
         
