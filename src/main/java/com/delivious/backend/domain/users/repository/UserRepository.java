@@ -10,5 +10,5 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @EntityGraph(attributePaths = "authorities")
-    Optional<UserEntity> findOneWithAuthoritiesByUsername(String username);
+    Optional<UserEntity> findOneWithAuthoritiesByUsername(String emaill);
 }

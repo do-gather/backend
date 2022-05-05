@@ -5,9 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import com.delivious.backend.domain.users.entity.UserEntity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Getter
@@ -19,16 +26,21 @@ public class UserDto {
 
     @NotNull
     @Size(min = 3, max = 50)
-    private String username;
+    private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     @Size(min = 3, max = 100)
     private String password;
 
-    @NotNull
-    @Size(min = 3, max = 50)
-    private String nickname;
+    @Column( nullable = false)
+    private Long phone_num;
+
+    @Column( nullable = false, length = 10)
+    private String name;
+
+    private Date date_of_birth;
+
 
     private Set<AuthorityDto> authorityDtoSet;
 
@@ -36,8 +48,7 @@ public class UserDto {
         if(user == null) return null;
 
         return UserDto.builder()
-                .username(user.getName())
-                //.nickname(user.getNickname())     //우리 코드에 필요없음
+                .email(user.getEmail())
                 .authorityDtoSet(user.getAuthorities().stream()
                         .map(authority -> AuthorityDto.builder().authorityName(authority.getAuthorityName()).build())
                         .collect(Collectors.toSet()))

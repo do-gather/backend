@@ -71,6 +71,9 @@ public class TokenProvider implements InitializingBean {
                 //.build()
                 .parseClaimsJws(token)
                 .getBody();
+                //.build()
+
+
 
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))

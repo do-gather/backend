@@ -27,7 +27,7 @@ public class UserService {
 
     @Transactional
     public UserDto signup(UserDto userDto) {
-        if (userRepository.findOneWithAuthoritiesByUsername(userDto.getUsername()).orElse(null) != null) {
+        if (userRepository.findOneWithAuthoritiesByUsername(userDto.getEmail()).orElse(null) != null) {
             throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
         }
 
@@ -36,10 +36,9 @@ public class UserService {
                 .build();
 
         UserEntity user = UserEntity.builder()
-                .name(userDto.getUsername())
+                .name(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
-                //.nickname(userDto.getNickname())
-                .authorities(Collections.singleton(authority))   //User Entity 에 연결된 문제 해결 안됨...
+                .authorities(Collections.singleton(authority))
                 .activated(true)
                 .build();
         

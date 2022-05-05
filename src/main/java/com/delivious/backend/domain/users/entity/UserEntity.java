@@ -4,6 +4,8 @@ package com.delivious.backend.domain.users.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -11,10 +13,14 @@ import java.util.Set;
 import java.util.UUID;
 
 
+
 @NoArgsConstructor
 @Getter
+@Setter
+
 @Entity
 @Table(name = "users")
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,8 +41,8 @@ public class UserEntity {
 
     private Date date_of_birth;
 
+    //@Column( nullable = false ,columnDefinition = "VARCHAR(255) default 'customer'"  )
     @Column( nullable = false )
-    //@ColumnDefault("customer")  //customer 디폴트값으로
     private String type;
 
     private Timestamp created_at;
@@ -52,7 +58,6 @@ public class UserEntity {
     private Set<Authority> authorities;
 
     @Builder
-
     public UserEntity(UUID user_id, String password, String email, Long phone_num, String name, Date date_of_birth, String type, Timestamp created_at, boolean activated, Set<Authority> authorities) {
         this.user_id = user_id;
         this.password = password;
