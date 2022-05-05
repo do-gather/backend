@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
-
 @Component
 public class TokenProvider implements InitializingBean {
 
@@ -42,13 +41,10 @@ public class TokenProvider implements InitializingBean {
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
     }
 
-
-
-
     @Override
     public void afterPropertiesSet() {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);    //여기 부분 오류 해결 필요
-        this.key = Keys.hmacShaKeyFor(keyBytes);             //여기 부분 오류 해결 필요
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String createToken(Authentication authentication) {
@@ -68,10 +64,11 @@ public class TokenProvider implements InitializingBean {
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwt
+        Claims claims = Jwts
+                //.parserBuilder()
                 .parser()
                 .setSigningKey(key)
-                .build()
+                //.build()
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -81,12 +78,13 @@ public class TokenProvider implements InitializingBean {
                         .collect(Collectors.toList());
 
         User principal = new User(claims.getSubject(), "", authorities);
+
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            Jwts.parser().setSigningKey(key).parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             logger.info("잘못된 JWT 서명입니다.");
