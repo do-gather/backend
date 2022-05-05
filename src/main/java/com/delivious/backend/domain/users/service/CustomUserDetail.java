@@ -1,11 +1,10 @@
 package com.delivious.backend.domain.users.service;
 
 
-<<<<<<< feature/login-29:src/main/java/com/delivious/backend/domain/users/service/CustomUserDetail.java
+//<<<<<<< feature/login-29:src/main/java/com/delivious/backend/domain/users/service/CustomUserDetail.java
 import com.delivious.backend.domain.users.entity.UserEntity;
-=======
-import com.delivious.backend.domain.users.entity.User;
->>>>>>> feat: fix user domain:src/main/java/com/delivious/backend/domain/users/service/CustomUserDetailService.java
+
+//>>>>>>> feat: fix user domain:src/main/java/com/delivious/backend/domain/users/service/CustomUserDetailService.java
 import com.delivious.backend.domain.users.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
