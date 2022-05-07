@@ -1,23 +1,21 @@
 package com.delivious.backend.domain.menu.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.delivious.backend.global.common.BaseEntity;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-
-@NoArgsConstructor
-@Builder
-@Getter
-@AllArgsConstructor
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "menu")
-public class MenuEntity {
+public class Menu extends BaseEntity {
 
     @NotNull
     @Id
@@ -25,8 +23,10 @@ public class MenuEntity {
     @Column( nullable = false, length = 50)
     private UUID menu_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CategoryEntity catagory_id;
+    // menu랑 categor,img연결은 다시 봐야될거가타요..!
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 
     // 여기서 img_id or img_url
 //    @OneToOne(fetch = FetchType.LAZY)
@@ -40,27 +40,37 @@ public class MenuEntity {
     @Column( nullable = false, length = 50)
     private String menu_name;
 
-    @Column( nullable = false)
-    private Long menu_price;
+    // Long -> int
+    @Column( nullable = false, length = 15)
+    private int menu_price;
 
     @Column(nullable = false)
     private String temperature;
 
     // size를 db에 어떤식으로 넣어야 할지
-    // 라떼 tall, grande, venti 3가지가 다 따로 들어가는지
-//    @Column(nullable = false)
-//    private Integer size;
+    @Enumerated(EnumType.STRING)
+    private Size size;
 
     @Column( nullable = false, length = 50)
     private String description;
 
-    private Timestamp created_at;
-    private Timestamp updated_at;
-
-    // 메뉴 변경 함수 -> img_url, size 이후에 추가
-    public void modify(String menu_name, Long menu_price, String description) {
+    public void update(String menu_name, int menu_price, String temperature, String description) {
         this.menu_name = menu_name;
         this.menu_price = menu_price;
+        this.temperature = temperature;
+        this.description = description;
+    }
+
+    @Builder
+    public Menu(String menu_name,
+                int menu_price,
+                String temperature,
+                Size size,
+                String description) {
+        this.menu_name = menu_name;
+        this.menu_price = menu_price;
+        this.temperature = temperature;
+        this.size = size;
         this.description = description;
     }
 }
