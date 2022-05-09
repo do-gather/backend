@@ -1,6 +1,7 @@
 package com.delivious.backend.domain.menu.entity;
 
 
+import com.delivious.backend.global.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Builder
 @Table(name = "img")
 
-public class Img {
+public class Img extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,8 +25,5 @@ public class Img {
 
     @Column( nullable = false, length = 500)
     private String img_url;
-
-    private Timestamp created_at;
-    private Timestamp updated_at;
 
 }

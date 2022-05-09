@@ -23,17 +23,16 @@ public class Menu extends BaseEntity {
     @Column( nullable = false, length = 50)
     private UUID menu_id;
 
-    // menu랑 categor,img연결은 다시 봐야될거가타요..!
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 
     // 여기서 img_id or img_url
-//    @OneToOne(fetch = FetchType.LAZY)
-//    private Long img_id;
-    // private String img_url;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="img_id")
+    private Img img;
 
-    // 지워도 되지 않을까요? figma에는 없어서요!
+
 //    @Column( nullable = false, length = 50)
 //    private Long store_num;
 
@@ -54,7 +53,8 @@ public class Menu extends BaseEntity {
     @Column( nullable = false, length = 50)
     private String description;
 
-    public void update(String menu_name, int menu_price, String temperature, String description) {
+    public void update(Img img, String menu_name, int menu_price, String temperature, String description) {
+        this.img = img;
         this.menu_name = menu_name;
         this.menu_price = menu_price;
         this.temperature = temperature;
