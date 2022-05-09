@@ -2,6 +2,7 @@ package com.delivious.backend.domain.users.service;
 
 
 import java.util.Collections;
+import java.util.Optional;
 
 import com.delivious.backend.domain.users.entity.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,6 +48,7 @@ public class UserService {
 
         return UserDto.from(userRepository.save(user));
     }
+
 
     @Transactional(readOnly = true)
     public UserDto getUserWithAuthorities(String id) {

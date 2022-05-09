@@ -28,10 +28,10 @@ public class MenuController {
 
     // 메뉴조회
     @ResponseBody
-    @Getter("/{menu_id}")
-    public ResponseEntity getDetail(@PathVariable UUID menu_id) {
+    @Getter("/{menu_name}")
+    public ResponseEntity getDetail(@PathVariable String menu_name) {
 
-        Optional<Menu> entity = menuService.findById(menu_id);
+        Optional<Menu> entity = menuService.findByName(menu_name);
         return ResponseEntity
                 .ok()
                 .body(MenuSaveDto.fromEntity(entity.get()));
@@ -43,9 +43,9 @@ public class MenuController {
 
     // 메뉴 삭제
     @ResponseBody
-    @DeleteMapping("/{menu_id}")
-    public ResponseEntity<MenuResponseDto> deleteMenu(@PathVariable UUID menu_id) {
-        menuService.delete(menu_id);
+    @DeleteMapping("/{menu_name}")
+    public ResponseEntity<MenuResponseDto> deleteMenu(@PathVariable String menu_name) {
+        menuService.delete(menu_name);
         return ResponseEntity
                 .ok()
                 .build();

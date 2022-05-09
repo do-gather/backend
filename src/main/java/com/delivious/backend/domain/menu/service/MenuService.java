@@ -34,7 +34,9 @@ public class MenuService {
     @Transactional
     public Menu update(UUID menu_id, MenuUpdateDto menuUpdateDto) {
         Menu menu = menuRepository.findById(menu_id).get();
-        menu.update(menuUpdateDto.getMenu_name(),
+        menu.update(
+                menuUpdateDto.getImg(),
+                menuUpdateDto.getMenu_name(),
                 menuUpdateDto.getMenu_price(),
                 menuUpdateDto.getTemperature(),
                 menuUpdateDto.getDescription());
@@ -47,8 +49,8 @@ public class MenuService {
     }
 
     @Transactional
-    public Optional<Menu> findById(UUID menu_id){
-        return menuRepository.findById(menu_id);
+    public Optional<Menu> findByName(String menu_name){
+        return menuRepository.findById(menu_name);
     }
 
 //    @Transactional(readOnly = true)
@@ -57,8 +59,8 @@ public class MenuService {
 //    }
 
     @Transactional
-    public void delete(UUID menu_id){
-        Menu menu = menuRepository.findById(menu_id).get();
+    public void delete(String menu_name){
+        Menu menu = menuRepository.findById(menu_name).get();
         menuRepository.delete(menu);
     }
 }

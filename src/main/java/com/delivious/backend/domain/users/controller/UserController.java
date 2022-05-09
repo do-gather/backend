@@ -3,6 +3,7 @@ package com.delivious.backend.domain.users.controller;
 
 
 import com.delivious.backend.domain.users.dto.UserDto;
+import com.delivious.backend.domain.users.entity.User;
 import com.delivious.backend.domain.users.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,6 +39,12 @@ public class UserController {
     ) {
         return ResponseEntity.ok(userService.signup(userDto));
     }
+    // 업데이트
+//    @PatchMapping("/user")
+//    public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto) {
+//        return ResponseEntity.ok(userService.update(userDto))
+//    }
+
 
     //사용자 조회(권한)
     @GetMapping("/user")
