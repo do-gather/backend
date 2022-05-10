@@ -48,8 +48,10 @@ public class Menu extends BaseEntity {
     private String temperature;
 
     // size를 db에 어떤식으로 넣어야 할지
-    @Enumerated(EnumType.STRING)
-    private Size size;
+    //@Enumerated(EnumType.STRING)
+    private enum Size{
+        tall, grande, venti
+    };
 
     @Column( nullable = false, length = 50)
     private String description;
