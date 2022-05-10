@@ -26,4 +26,6 @@ public class Img extends BaseEntity {
     @Column( nullable = false, length = 500)
     private String img_url;
 
+    @OneToOne(mappedBy = "img")
+    private Menu menu;
 }
