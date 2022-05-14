@@ -38,3 +38,7 @@ jwt:
 logging:
   level:
     com.delivious: DEBUG
+
+management:
+  security:
+    enabled=false:
