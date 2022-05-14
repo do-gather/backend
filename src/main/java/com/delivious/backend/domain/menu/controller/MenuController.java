@@ -1,8 +1,10 @@
 package com.delivious.backend.domain.menu.controller;
 import com.delivious.backend.domain.menu.dto.MenuResponseDto;
 import com.delivious.backend.domain.menu.dto.MenuSaveDto;
+import com.delivious.backend.domain.menu.dto.MenuUpdateDto;
 import com.delivious.backend.domain.menu.entity.Menu;
 import com.delivious.backend.domain.menu.service.MenuService;
+import com.delivious.backend.global.utils.ErrorResponseDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,6 +40,17 @@ public class MenuController {
     }
 
     // 메뉴 수정
+    @ResponseBody
+    @PutMapping("/{menu_id}")
+    public ResponseEntity<MenuResponseDto> updateMenu(@PathVariable UUID menu_id, @RequestBody MenuUpdateDto requestDto) {
+        Menu entity = menuService.update(menu_id, requestDto);
+        try {
+            return new ResponseEntity(MenuUpdateDto.fromEntity(entity), HttpStatus.ACCEPTED);
+        }
+        catch (Exception e) {
+            return new ResponseEntity(ErrorResponseDto.fromEntity("FORBIDDEN", "상품 수정에 오류가 발생하였습니다."), HttpStatus.BAD_REQUEST);
+        }
+    }
 
     // 카테고리별 목록조회
 
