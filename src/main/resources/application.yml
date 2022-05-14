@@ -1,18 +1,27 @@
 spring:
 
-#  h2:
-#    console:
-#      enabled: true
-
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: local
   datasource:
-    url: jdbc:postgresql://localhost:5432/delivious
-    username: kimhyelin
-    password: 1234
+    hikari:
+      jdbc-url: jdbc:h2:./data/delivious
+      # 또는 jdbc:h2:tcp://localhost:9092/./data/delivious
+      driver-class-name: org.h2.Driver
+      username: abc
+      password: 1234
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/delivious
+#    username:
+#    password: 1234
 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
