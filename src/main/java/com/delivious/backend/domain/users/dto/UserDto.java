@@ -31,7 +31,7 @@ public class UserDto {
     private Date date_of_birth;
 
     @Column( nullable = false)
-    private Long phone_num;
+    private String phone_num;
 
     @Column( nullable = false ,columnDefinition = "VARCHAR(255) default 'customer'"  )
     private String type;

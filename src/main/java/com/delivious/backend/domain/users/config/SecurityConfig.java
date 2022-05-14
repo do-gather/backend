@@ -80,7 +80,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/signup").permitAll()
-
+                .antMatchers("/",
+                        "/favicon.ico",
+                        "/**/*.png",
+                        "/**/*.gif",
+                        "/**/*.svg",
+                        "/**/*.jpg",
+                        "/**/*.html",
+                        "/**/*.css",
+                        "/**/*.js")
+                .permitAll()
                 .anyRequest().authenticated()
 
                 .and()

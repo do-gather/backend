@@ -4,6 +4,7 @@ package com.delivious.backend.domain.users.controller;
 
 import com.delivious.backend.domain.users.dto.LoginDto;
 import com.delivious.backend.domain.users.dto.TokenDto;
+import com.delivious.backend.domain.users.dto.UserDto;
 import com.delivious.backend.domain.users.jwt.JwtFilter;
 import com.delivious.backend.domain.users.jwt.TokenProvider;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,7 @@ public class AuthController {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
+
 
     //login
     @PostMapping("/authenticate")

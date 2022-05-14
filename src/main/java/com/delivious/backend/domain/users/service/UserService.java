@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import com.delivious.backend.domain.users.entity.User;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
