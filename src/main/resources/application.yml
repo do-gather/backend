@@ -1,0 +1,44 @@
+spring:
+
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:./data/delivious
+      # 또는 jdbc:h2:tcp://localhost:9092/./data/delivious
+      driver-class-name: org.h2.Driver
+      username: abc
+      password: 1234
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/delivious
+#    username:
+#    password: 1234
+
+  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    defer-datasource-initialization: true
+
+jwt:
+  header: Authorization
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  #echo 'silvernine-tech-spring-boot-jwt-tutorial-secret-silvernine-tech-spring-boot-jwt-tutorial-secret'|base64
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  token-validity-in-seconds: 86400
+
+logging:
+  level:
+    com.delivious: DEBUG
+
+management:
+  security:
+    enabled=false:
